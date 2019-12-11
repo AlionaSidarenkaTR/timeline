@@ -1,0 +1,29 @@
+@import '../common/common-style';
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  min-width: 330px;
+
+  .timeline {
+    width: 100%;
+  }
+
+  &.content-top {
+    align-content: flex-start;
+    justify-content: center;
+  }
+
+  .center {
+    justify-content: center;
+
+    input, button {
+      outline: none;
+    }
+  }
+}
+
+

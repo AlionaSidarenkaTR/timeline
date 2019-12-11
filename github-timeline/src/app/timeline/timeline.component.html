@@ -1,0 +1,11 @@
+<ul class="timeline">
+  <li *ngFor="let repo of repos; let odd = odd; let even = even;" [ngClass]="{'flex-start': even, 'flex-end': odd}">
+    <div [ngClass]="{'direction-r': odd, 'direction-l': even}">
+      <div class="flag-wrapper">
+        <span class="time-wrapper"><span class="time">{{repo.created_at | date}}</span></span>
+        <span class="flag">{{repo.name}}</span>
+      </div>
+      <div class="desc" *ngIf="repo.description">{{repo.description}}</div>
+    </div>
+  </li>
+</ul>

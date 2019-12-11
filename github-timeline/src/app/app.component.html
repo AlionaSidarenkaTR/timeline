@@ -1,0 +1,19 @@
+<div class="wrapper"
+     [ngClass]="{'content-top': triggeredState}"
+>
+  <app-message></app-message>
+  <div class="input-group center">
+    <input type="text"
+           placeholder="Enter github username"
+           aria-label="Github username"
+           aria-describedby="button-addon2"
+           #box (keyup.enter)="generateTimeline(box.value)">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="generateTimeline(box.value)"
+              id="button-addon2">Generate</button>
+    </div>
+  </div>
+  <app-timeline class="timeline" [repos]="repos" *ngIf="repos && repos.length"></app-timeline>
+</div>

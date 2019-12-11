@@ -1,0 +1,21 @@
+@import 'scss-variables';
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $light-grey;
+  color: $dark-grey;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 112.5%;
+  line-height: 1.6em;
+}
+
+.content {
+  content: "";
+  display: block;
+}
+
+.vertical-centering {
+  position: absolute;
+  top: 50%;
+}

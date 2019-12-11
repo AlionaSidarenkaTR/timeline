@@ -1,0 +1,205 @@
+@import '../../common/scss-variables';
+@import '../../common/common-style';
+
+@mixin background($color, $opacity-color) {
+  background: $color;
+  background: -moz-linear-gradient(top, $opacity-color 0%, $color 8%, $color 92%, $opacity-color 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $dark-blue), color-stop(100%, $light-blue));
+  background: -webkit-linear-gradient(top, $opacity-color 0%, $color 8%, $color 92%, $opacity-color 100%);
+  background: -o-linear-gradient(top, $opacity-color 0%, $color 8%, $color 92%, $opacity-color 100%);
+  background: -ms-linear-gradient(top, $opacity-color 0%, $color 8%, $color 92%, $opacity-color 100%);
+  background: linear-gradient(to bottom, $opacity-color 0%, $color 8%, $color 92%, $opacity-color 100%);
+}
+
+@mixin box-shadow($color) {
+  -webkit-box-shadow: -1px 1px 1px $color, 0 0 1px $color;
+  -moz-box-shadow: -1px 1px 1px $color, 0 0 1px $color;
+  box-shadow: -1px 1px 1px $color, 0 0 1px $color;
+}
+
+.timeline {
+  position: relative;
+  width: 660px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 1em 0;
+  list-style-type: none;
+
+  &:before {
+    @include background($dark-grey-no-opacity, $dark-grey-opacity);
+    @extend .content;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    margin-left: -3px;
+  }
+
+  li {
+    padding: 1em 0;
+    display: flex;
+
+    &.flex-start {
+      justify-content: flex-start;
+      text-align: right;
+    }
+
+    &.flex-end {
+      justify-content: flex-end;
+    }
+
+    [class^="direction"] {
+      width: 300px;
+
+      .flag-wrapper {
+        display: flex;
+
+        .time-wrapper {
+          font-size: 0.7em;
+          color: $red;
+
+          .time {
+            padding: 4px 6px;
+            background: $white;
+          }
+        }
+
+        .flag {
+          position: relative;
+          padding: 7px;
+          border-radius: 5px;
+          background: $white;
+          font-weight: 600;
+          @include box-shadow($light-grey-opacity);
+
+          &:before {
+            @extend .vertical-centering;
+            @extend .content;
+            width: 12px;
+            height: 12px;
+            margin-top: -6px;
+            background: $white;
+            border-radius: 10px;
+            border: 4px solid $light-blue;
+          }
+
+          &:after {
+            @extend .vertical-centering;
+            @extend .content;
+            height: 0;
+            width: 0;
+            margin-top: -8px;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            pointer-events: none;
+          }
+        }
+      }
+
+      .desc {
+        margin: 1em 0.75em 0 0;
+        font-size: 0.8em;
+        font-style: italic;
+        line-height: 1.5em;
+      }
+    }
+
+    .direction-l .flag-wrapper {
+      justify-content: flex-end;
+      .flag {
+        &:before {
+          right: -36px;
+        }
+
+        &:after {
+          left: 100%;
+          border-left: 8px solid $white;
+        }
+      }
+    }
+
+    .direction-r {
+      .desc {
+        margin: 1em 0 0 0.75em;
+      }
+
+      .flag-wrapper {
+        .flag {
+          order: 0;
+          &:before {
+            left: -36px;
+          }
+
+          &:after {
+            right: 100%;
+            border-right: 8px solid $white;
+          }
+        }
+
+        .time-wrapper {
+          order: 1;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .timeline {
+    width: 100%;
+    &:before {
+      z-index: -1;
+    }
+
+    li {
+      padding: 24px;
+
+      [class^="direction"] {
+        width: 100%;
+
+        .flag-wrapper {
+          text-align: center;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          margin: 4px;
+
+          .time-wrapper {
+            order: 1;
+            z-index: 1;
+          }
+
+          .flag {
+            order: 0;
+
+            &:before {
+              left: 50%;
+              margin-left: -6px;
+              top: -25px;
+            }
+
+            &:after {
+              top: 0;
+              left: 50%;
+              margin-left: -8px;
+              margin-top: -14px;
+              border-left: 8px solid transparent;
+              border-right: 8px solid transparent;
+              border-bottom: 8px solid $white;
+            }
+          }
+        }
+
+        .desc {
+          text-align: center;
+          background: $light-blue;
+          margin: 0 auto;
+          width: 95%;
+          border-radius: 3px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
